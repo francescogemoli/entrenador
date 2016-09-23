@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=”utf-8″>
-    <title>Pregunta - Entrenador de Preguntas</title>
+    <title>Preguntas - Entrenador de Preguntas</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -15,16 +15,21 @@
     </header>
     
     <nav>
-        <a href="../index.php">HomePage</a>
-        <a href="../index.php/preguntas">Preguntas Aleatoreas</a>
+        <a href="../index.php">HomePage</a> |
+        <a href="../index.php/preguntas">Preguntas Aleatoreas</a> |
+        <a href="../index.php/subirpregunta">Subir Pregunta</a>
     </nav>
 
     <main>
         <div>
         <?php
-        foreach($data['preguntas'] as $p){
-			echo "<h2>${p['pregunta']}</h2>";
+            $p = $data['preguntas']['pregunta'];
+			echo "<h2>$p</h2>";
+
+            foreach($data['respuestas'] as $r){
+			echo "<ul><input type='radio' name='correcta' value='1' required>${r['respuesta']}</ul>";
             }
+            //print_r($data);
         ?>
         </div>
     </main>

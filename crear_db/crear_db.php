@@ -90,6 +90,21 @@ sql;
             echo "<p>Tabla Respuestas creada.</p>";
         }
 
+        /* Crear tabla Estadisticas */
+        $sql = <<<sql
+        create table Estadisticas(
+        ruta varchar(200) primary key,
+        clicks int
+);
+sql;
+        $res = $conexion->exec($sql);
+        if($res===FALSE){
+            echo "<p>No se ha podido crear la tabla Estadisticas.</p>";
+            echo "<p>".$conexion->errorInfo()[2]."</p>";
+        }else{
+            echo "<p>Tabla Estadisticas creada.</p>";
+        }
+        
         /* Insert titulo y titulo_url en Temas */
         $sql = <<<sql
 insert into Temas(titulo, titulo_url)
@@ -119,7 +134,7 @@ sql;
         /* Insert respuesta, verdadera y pregunta en Respuestas */
         $sql = <<<sql
 insert into Respuestas(respuesta, verdadera, pregunta)
-values ('45','0','1'),('-4','1','1'),('4','0','1'),('-45','0','1'),('7400','0','1'),('2000','0','2'),('5000','0','2'),('20000','0','2'),('50000','0','2'),('100','1','2'),('Tratado de Utretch','0','3'),('Tratado de Versalles','0','3'),('Tratado de Tordesillas','1','3'),('Afirma la esperanza de la felicidad en la vida eterna','0','4'),('Afirma la dignidad y valor del individuo','1','4'),('Afirma la existencia del poder superior de los dioses que controlan el destino delos humanos','0','4'),('Piemonte','0','5'),('Toscana','0','5'),('Corsica','1','5'),('Lombardia','0','5'),('Cabra','0','6'),('Vaca','0','6'),('Oveja','0','6'),('búfala','1','6');
+values ('45','0','1'),('-4','1','1'),('4','0','1'),('-45','0','1'),('2000','0','2'),('5000','0','2'),('20000','0','2'),('100','1','2'),('Tratado de Utretch','0','3'),('Tratado de Versalles','0','3'),('Tratado de Tordesillas','1','3'),('Tratado de Casanova','0','3'),('Afirma la esperanza de la felicidad en la vida eterna','0','4'),('Afirma la dignidad y valor del individuo','1','4'),('Afirma la existencia del poder superior de los dioses que controlan el destino delos humanos','0','4'),('Afirma la seguridad de la felicidad en la vida eterna','0','4'),('Piemonte','0','5'),('Toscana','0','5'),('Corsica','1','5'),('Lombardia','0','5'),('Cabra','0','6'),('Vaca','0','6'),('Oveja','0','6'),('búfala','1','6');
 sql;
         $res = $conexion->exec($sql);
         if($res===FALSE){
@@ -129,6 +144,19 @@ sql;
             echo "<p>Se han añadido $res filas de Preguntas</p>";
         }
 
+        /* Insert ruta y clicks en Estadisticas */
+        $sql = <<<sql
+insert into Estadisticas(ruta, clicks)
+values ('index.php','0');
+sql;
+        $res = $conexion->exec($sql);
+        if($res===FALSE){
+            echo "<p>Error al añadir datos.</p>";
+            echo "<p>".$conexion->errorInfo()[2]."</p>";
+        }else{
+            echo "<p>Se han añadido $res filas de Preguntas</p>";
+        }
+        
         ?>
     </body>
 </html>

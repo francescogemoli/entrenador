@@ -8,12 +8,14 @@ class ComposerStaticInit6dd1c20c486b27f70f8eb2b741068ecf
 {
     public static $files = array (
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        '9ff7e9b7f973a2a50513909ec1ddb708' => __DIR__ . '/..' . '/osorcom/safe-url-middleware/src/SafeURLMiddleware.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
             'Slim\\Views\\' => 11,
+            'Slim\\Middleware\\' => 16,
             'Slim\\' => 5,
         ),
         'P' => 
@@ -34,6 +36,10 @@ class ComposerStaticInit6dd1c20c486b27f70f8eb2b741068ecf
         'Slim\\Views\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/php-view/src',
+        ),
+        'Slim\\Middleware\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tuupola/slim-basic-auth/src',
         ),
         'Slim\\' => 
         array (

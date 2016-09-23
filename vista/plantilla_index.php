@@ -15,8 +15,9 @@
     </header>
     
     <nav>
-        <a href="index.php">HomePage</a>
-        <a href="index.php/preguntas">Preguntas Aleatoreas</a>
+        <a href="index.php">HomePage</a> |
+        <a href="index.php/preguntas">Preguntas Aleatoreas</a> |
+        <a href="index.php/subirpregunta">Subir Pregunta</a>
     </nav>
 
     <main>
