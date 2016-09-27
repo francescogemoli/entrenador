@@ -1,6 +1,6 @@
 <?php
   require "vendor/autoload.php";
-  require "estatisticas.php";
+  require "model/estadisticas.php";
 
   $app = new Slim\App();
 
