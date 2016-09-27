@@ -1,14 +1,20 @@
 <?php
-  class ModelEstatistics {
-    private $con;
-    public function __construct(){
-        $this->con = new PDO("mysql:host=localhost;dbname=entrenador", "root", "aula4");
-        $this->con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    }
-    public function getEstatistics(){
-      $res = $this->con->query("select * from estadistica;");
-      if(!$res) return [];
-      return $res->fetchAll();
+  class Estadistica{
+    public function __invoke($request, $response, $next){
+      $con = new PDO("mysql:host=localhost;dbname=entrenador", "root");
+      $con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+      $ruta = $request->getUri()->getPath();
+      //si es una página de validación no la tenemos en cuenta
+      if(strpos($ruta, "validar") || strpos($ruta, "tadistica")) return $next($request, $response);
+      $res = $con->query("select clics from estadistica where ruta='$ruta'");
+      $res = $res->fetch();
+      if(!$res){
+        $con->exec("insert into estadistica(ruta, clics) values('$ruta', 1)");
+      }else{
+        $clics = $res['clics']+1;
+        $con->exec("update estadistica set clics=$clics where ruta='$ruta';");
+      }
+      return $next($request, $response);
     }
   }
 ?>
